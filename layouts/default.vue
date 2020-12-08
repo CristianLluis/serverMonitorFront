@@ -1,16 +1,19 @@
 <template>
   <div>
     <NotificationBar />
+    <IndicatorIcon :status="'issue'" :showText="true" />
     <nuxt />
   </div>
 </template>
 
 <script>
 import NotificationBar from "@/components/visitors/general/NotificationBar";
+import IndicatorIcon from "@/components/visitors/general/IndicatorIcon";
 
 export default {
   components: {
-    NotificationBar
+    NotificationBar,
+    IndicatorIcon
   }
 };
 </script>
