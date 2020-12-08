@@ -1,64 +1,53 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-    </v-app-bar>
-    <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
-    </v-content>
-    <v-footer
-      fixed
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
-  </v-app>
+  <div>
+    <NotificationBar />
+    <nuxt />
+  </div>
 </template>
 
 <script>
+import NotificationBar from "@/components/visitors/general/NotificationBar";
+
 export default {
-  data () {
-    return {
-      drawer: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        }
-      ],
-      title: 'I am a superb title'
-    }
+  components: {
+    NotificationBar
   }
-}
+};
 </script>
+
+<style>
+body {
+  font-family: Montserrat;
+}
+body,
+html {
+  margin: 0px;
+  padding: 0px;
+}
+h2,
+h3,
+h1,
+h4 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+a,
+a:focus,
+a:visited,
+a:hover {
+  color: #000;
+  text-decoration: none;
+}
+.issue,
+.yellow {
+  background: #f1c21a;
+}
+.down,
+.red {
+  background: #cd5c5c;
+}
+.up,
+.green {
+  background: #2ee779;
+}
+</style>
