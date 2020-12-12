@@ -1,19 +1,24 @@
 <template>
-  <div>
-    <NotificationBar />
-    <IndicatorIcon :status="'issue'" :showText="true" />
-    <nuxt />
-  </div>
+  <v-app>
+    <TheHeader />
+    <v-main>
+      <v-container>
+        <nuxt />
+      </v-container>
+    </v-main>
+    <TheFooter />
+  </v-app>
 </template>
 
 <script>
-import NotificationBar from "@/components/visitors/general/NotificationBar";
-import IndicatorIcon from "@/components/visitors/general/IndicatorIcon";
+import TheFooter from "@/components/visitors/general/TheFooter";
+import TheHeader from "@/components/visitors/general/TheHeader";
 
 export default {
   components: {
-    NotificationBar,
-    IndicatorIcon
+    IndicatorIcon,
+    TheFooter,
+    TheHeader
   }
 };
 </script>
