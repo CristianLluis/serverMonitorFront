@@ -18,22 +18,23 @@ export default {
         return ["up", "down", "issue"].includes(value);
       }
     },
-    showText: Boolean
+    showText: {
+      type: Boolean,
+      default: false,
+    }
   },
 
   computed: {
     message() {
-      if (this.status === "up") {
-        return "All is good";
-      } else if (this.status === "down") {
-        return "We are having issues";
-      } else if (this.status === "issue") {
-        return "You might notice some inconvenience";
-      } else {
-        return "Invalid";
-      }
+      return this.status === "up"
+        ? "All is good"
+        : this.status === "down"
+        ? "We are having issues"
+        : this.status === "issue"
+        ? "We might notice some inconvenience"
+        : "Invalid";
     }
-  }
+  },
 };
 </script>
 

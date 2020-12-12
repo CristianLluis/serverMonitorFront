@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div
+    <v-alert
       v-for="i in notificationErrors"
       :key="i.id"
-      :class="'full-background ' + i.color"
+      :type="getType(i.color)"
     >
       {{ i.text }}
-    </div>
+    </v-alert>
   </div>
 </template>
 
@@ -20,10 +20,22 @@ export default {
         {
           color: "red",
           id: 0,
-          text: "Oh, we are having some issues"
+          text: "Oh, we are having some issues :-("
         }
       ]
     };
+  },
+
+  methods: {
+    getType: color => {
+      return color === "red"
+        ? "error"
+        : color === "green"
+        ? "success"
+        : color === "yellow"
+        ? "warning"
+        : null
+    }
   }
 };
 </script>
