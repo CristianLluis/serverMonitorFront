@@ -1,12 +1,19 @@
 <template>
   <v-card class="mb-4" elevation="6">
     <v-timeline dense>
-      <v-timeline-item v-for="(date, index) in dates" small :key="index">
+      <v-timeline-item
+        v-for="(date, index) in dates"
+        small
+        :key="index"
+        :icon="getIncidents(date).length >= 1 ? 'mdi-exclamation' : 'mdi-check'"
+        :color="getIncidents(date).length >= 1 ? 'warning' : 'success'"
+        fill-dot
+      >
         <div>
           {{ getDateAsString(date) }}
         </div>
-        <div>
-          <IncidentMsg :dateObject="checkIncident(date)" />
+        <div class="incidents ml-2">
+          <IncidentMsg :incidents="getIncidents(date)" />
         </div>
       </v-timeline-item>
     </v-timeline>
@@ -51,37 +58,34 @@ export default {
             status: "resolved"
           }
         ]
+      },
+      {
+        id: 3,
+        title: "Email Server Down",
+        end: "2020-12-12 19:15:12",
+        start: "2020-12-11 13:00:12",
+        update_set: [
+          {
+            description: "Could not send emails",
+            date: "2020-12-11 14:00:12",
+            status: "resolved"
+          }
+        ]
       }
     ],
     dates: []
   }),
 
   methods: {
-    getEndDatesAndTitleOfClosedInsidets() {
-      return this.closedIncidents.map(i => ({
-        date: moment(i.end)
+    getIncidents(date) {
+      return this.closedIncidents.filter(i =>
+        moment(i.end)
           .startOf("day")
-          .format(),
-        title: i.title
-      }));
+          .isSame(moment(date).startOf("day"))
+      );
     },
 
-    getDateAsString: date => moment(date).format("ddd, DD MMM YYYY"),
-
-    checkIncident(date) {
-
-      let dateMomentString = moment(date)
-        .startOf("day")
-        .format();
-
-      let incident = this.getEndDatesAndTitleOfClosedInsidets().filter(
-        i => i.date === dateMomentString
-      );
-      return {
-        hasIncident: incident.length >= 1 ? true : false,
-        incident: incident
-      };
-    }
+    getDateAsString: date => moment(date).format("ddd, DD MMM YYYY")
   },
 
   created() {
@@ -93,3 +97,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.incidents {
+  font-size: 0.75rem
+}
+</style>
