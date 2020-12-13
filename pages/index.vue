@@ -2,6 +2,7 @@
   <div>
     <NotificationBar />
     <SiteStatus :siteInfo="siteStatus" />
+    <HistoryView /> 
     <div v-if="openIncidents.length >= 1">
       <IncidentListItem
         v-for="i in openIncidents"
@@ -18,6 +19,7 @@
 import NotificationBar from "@/components/visitors/general/NotificationBar.vue";
 import IncidentListItem from "@/components/visitors/IncidentListItem.vue";
 import SiteStatus from "@/components/visitors/SiteStatus.vue";
+import HistoryView from "@/components/visitors/HistoryView.vue"
 
 export default {
   name: "indexPage",
@@ -25,7 +27,8 @@ export default {
   components: {
     NotificationBar,
     IncidentListItem,
-    SiteStatus
+    SiteStatus,
+    HistoryView
   },
 
   data: () => ({
