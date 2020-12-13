@@ -16,7 +16,6 @@ import TheHeader from "@/components/visitors/general/TheHeader";
 
 export default {
   components: {
-    IndicatorIcon,
     TheFooter,
     TheHeader
   }
