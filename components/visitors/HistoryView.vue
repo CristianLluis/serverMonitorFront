@@ -12,7 +12,7 @@
         <div>
           {{ getDateAsString(date) }}
         </div>
-        <div class="incidents ml-2">
+        <div class="incidents">
           <IncidentMsg :incidents="getIncidents(date)" />
         </div>
       </v-timeline-item>

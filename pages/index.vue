@@ -2,7 +2,7 @@
   <div>
     <NotificationBar />
     <SiteStatus :siteInfo="siteStatus" />
-    <HistoryView /> 
+    <HistoryView />
     <div v-if="openIncidents.length >= 1">
       <IncidentListItem
         v-for="i in openIncidents"
@@ -11,7 +11,7 @@
         @click="openIncidentPage(i)"
       />
     </div>
-    <IncidentListItem v-else :hasNoIncidents="true" />
+    <IncidentListItem v-else hasNoIncidents />
   </div>
 </template>
 
@@ -19,7 +19,7 @@
 import NotificationBar from "@/components/visitors/general/NotificationBar.vue";
 import IncidentListItem from "@/components/visitors/IncidentListItem.vue";
 import SiteStatus from "@/components/visitors/SiteStatus.vue";
-import HistoryView from "@/components/visitors/HistoryView.vue"
+import HistoryView from "@/components/visitors/HistoryView.vue";
 
 export default {
   name: "indexPage",
@@ -126,15 +126,8 @@ export default {
   }),
 
   methods: {
-    getRouterObject: incident => {
-      return {
-        name: "incident-id",
-        params: { id: incident.id }
-      };
-    },
-
     openIncidentPage(i) {
-      this.$router.push(this.getRouterObject(i));
+      this.$router.push({ name: "incident-id", params: { id: i.id } });
     }
   }
 };
