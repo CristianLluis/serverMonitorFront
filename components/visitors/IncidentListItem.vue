@@ -31,9 +31,12 @@
 
 <script>
 import moment from "moment";
+import { timeFormatter } from "@/mixins/TimeFormatter";
 
 export default {
   name: "Incident",
+
+  mixins:[timeFormatter],
 
   props: {
     incident: {
@@ -53,12 +56,6 @@ export default {
       return this.incident.update_set[0];
     }
   },
-
-  methods: {
-    howLongAgo: value => {
-      return moment.utc(value).fromNow();
-    }
-  }
 };
 </script>
 
