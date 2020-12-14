@@ -9,7 +9,18 @@
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" app>
-      <!-- -->
+      <v-list>
+        <v-list-item>
+          <v-list-item to="/">
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Home</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
   </div>
 </template>
